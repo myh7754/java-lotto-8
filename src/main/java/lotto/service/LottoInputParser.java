@@ -10,4 +10,10 @@ public class LottoInputParser {
                 .toList();
         return parseNumbers;
     }
+
+    public List<Integer> convertToIntegerList(List<String> input) {
+        return input.stream()
+                .map(Integer::parseInt)
+                .toList();
+    }
 }
