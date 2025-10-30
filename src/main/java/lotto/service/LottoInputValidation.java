@@ -22,4 +22,11 @@ public class LottoInputValidation {
             throw new IllegalArgumentException(String.format("[ERROR] %s이 숫자 형식이 아닙니다.", lottoNumber));
         }
     }
+
+    public void validateNumberRange(int lottoNumber) {
+        if (lottoNumber < 1 || lottoNumber > 45) {
+            throw new IllegalArgumentException(String.format("[ERROR] $d는 1~45사이의 숫자가 아닙니다.",  lottoNumber));
+        }
+    }
+
 }
