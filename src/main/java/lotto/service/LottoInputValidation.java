@@ -35,4 +35,10 @@ public class LottoInputValidation {
         }
     }
 
+    public void validatePurchaseAmount(int purchaseAmount) {
+        if (purchaseAmount % 1000 != 0) {
+            throw new IllegalArgumentException(String.format("[ERROR] 1,000원 단위의 금액이어야 합니다. 입력값  %d", purchaseAmount));
+        }
+    }
+
 }
