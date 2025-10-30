@@ -8,4 +8,8 @@ public class LottoService {
     public int calculateLottoCount(int purchaseAmount) {
         return purchaseAmount/1000;
     }
+
+    public List<Integer> generateLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
 }
