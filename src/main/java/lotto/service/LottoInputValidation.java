@@ -16,4 +16,10 @@ public class LottoInputValidation {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
         }
     }
+
+    public void validateNumberFormat(String lottoNumber) {
+        if (!lottoNumber.matches("\\d+")) { // 숫자만 있는지 확인
+            throw new IllegalArgumentException(String.format("[ERROR] %s이 숫자 형식이 아닙니다.", lottoNumber));
+        }
+    }
 }
