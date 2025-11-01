@@ -42,4 +42,7 @@ class LottoTest {
 
         assertThat(lottoNumbers).isEqualTo(List.of("1","2","3","4","5","6"));
     }
+
+    @Test
+    
 }
