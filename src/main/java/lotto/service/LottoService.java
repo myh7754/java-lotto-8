@@ -12,7 +12,7 @@ public class LottoService {
     }
 
     public List<Integer> generateLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6).stream().sorted().toList();
     }
 
     public List<Lotto> generateLottos(int lottoCount) {
