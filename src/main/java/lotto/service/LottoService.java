@@ -23,7 +23,7 @@ public class LottoService {
         return lottos;
     }
 
-    public Rank calculateLottoRank(Lotto lotto, List<Integer> lottoNumbers, int bonusNumber) {
+    private Rank calculateLottoRank(Lotto lotto, List<Integer> lottoNumbers, int bonusNumber) {
         List<Integer> numbers = lotto.getNumbers();
         long matchCount = numbers.stream()
                 .filter(lottoNumbers::contains)
@@ -46,7 +46,7 @@ public class LottoService {
     }
 
     public double calculateRateOfReturn(Map<Rank,Integer> results, int purchaseAmount) {
-        long totalPrize = 0;
+        double totalPrize = 0;
         for (Map.Entry<Rank,Integer> entry : results.entrySet()) {
             totalPrize += entry.getKey().getPrize()* entry.getValue();
         }
