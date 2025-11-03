@@ -29,6 +29,10 @@ public enum Rank {
         return FAIL;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     public String getMessage() {
         return message;
     }

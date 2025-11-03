@@ -4,10 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoService {
     public int calculateLottoCount(int purchaseAmount) {
@@ -46,5 +43,16 @@ public class LottoService {
             results.put(rank, results.getOrDefault(rank, 0) + 1);
         }
         return results;
+    }
+
+    public double calculateRateOfReturn(Map<Rank,Integer> results, int purchaseAmount) {
+        long totalPrize = 0;
+        for (Map.Entry<Rank,Integer> entry : results.entrySet()) {
+            totalPrize += entry.getKey().getPrize()* entry.getValue();
+        }
+
+        double rate = totalPrize / purchaseAmount * 100;
+
+        return Math.round(rate*100) / 100.0;
     }
 }
