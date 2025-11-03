@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,5 +22,18 @@ public class LottoService {
             lottos.add(new Lotto(generateLottoNumbers()));
         }
         return lottos;
+    }
+
+    public Rank calculateLottoRank(Lotto lotto, List<Integer> lottoNumbers, int bonusNumber) {
+        List<Integer> numbers = lotto.getNumbers();
+        long matchCount = numbers.stream()
+                .filter(lottoNumbers::contains)
+                .count();
+        boolean matchBonus = false;
+        if (matchCount == 5 && numbers.contains(bonusNumber)) {
+           matchBonus = true;
+        }
+
+        return Rank.valueOf((int) matchCount, matchBonus);
     }
 }

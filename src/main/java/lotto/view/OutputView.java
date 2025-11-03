@@ -1,8 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     public void printNumberOfPurchases(int purchaseAmount) {
@@ -12,6 +14,15 @@ public class OutputView {
     public void printWinningNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
+        }
+    }
+
+    public void printResultMessage(Map<Rank,Integer> results) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (Rank rank : results.keySet()) {
+            System.out.println(rank.getMessage()+" - "+results.get(rank)+"개");
         }
     }
 
