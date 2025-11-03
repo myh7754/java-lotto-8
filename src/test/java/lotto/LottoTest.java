@@ -144,7 +144,9 @@ class LottoTest {
     @DisplayName("보너스 번호가 로또 번호와 중복되면 오류 발생")
     void 보너스_번호_중복_테스트() {
         bonusNumber = "6";
-        assertThatThrownBy(() -> validator.validateBonusNotInLotto(lottoNumbers, bonusNumber))
+        int parsedBonusNumber = lottoInputParser.parseToInt(bonusNumber);
+        List<Integer> parsedLottoNumbers = lottoInputParser.convertToIntegerList(lottoNumbers);
+        assertThatThrownBy(() -> validator.validateBonusNotInLotto(parsedLottoNumbers, parsedBonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(String.format("[ERROR] 보너스 숫자 : %s가 기존 당첨 번호와 중복됩니다.", bonusNumber));
     }
@@ -153,7 +155,9 @@ class LottoTest {
     @DisplayName("보너스 번호가 로또 번호와 중복되지 않으면 성공")
     void 보너스_번호_중복_성공_테스트() {
         bonusNumber = "7";
-        assertThatCode(() -> validator.validateBonusNotInLotto(lottoNumbers, bonusNumber))
+        int parsedBonusNumber = lottoInputParser.parseToInt(bonusNumber);
+        List<Integer> parsedLottoNumbers = lottoInputParser.convertToIntegerList(lottoNumbers);
+        assertThatCode(() -> validator.validateBonusNotInLotto(parsedLottoNumbers, parsedBonusNumber))
                 .doesNotThrowAnyException();
     }
 

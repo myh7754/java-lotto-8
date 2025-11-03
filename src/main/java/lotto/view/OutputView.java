@@ -11,7 +11,7 @@ public class OutputView {
         System.out.println(purchaseAmount+"개를 구매했습니다.");
     }
 
-    public void printWinningNumbers(List<Lotto> lottos) {
+    public void printPurchaseLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }

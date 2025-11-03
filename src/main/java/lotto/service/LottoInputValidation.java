@@ -29,7 +29,7 @@ public class LottoInputValidation {
         }
     }
 
-    public void validateBonusNotInLotto(List<String> lottoNumbers, String bonusNumber) {
+    public void validateBonusNotInLotto(List<Integer> lottoNumbers, int bonusNumber) {
         if (lottoNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(String.format("[ERROR] 보너스 숫자 : %s가 기존 당첨 번호와 중복됩니다.", bonusNumber));
         }
