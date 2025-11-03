@@ -46,37 +46,49 @@ public class LottoController {
 
     private int readPurchaseAmount() {
         while (true) {
-            String readPurchaseAmount = inputView.readPurchaseAmount();
-            validator.validateNumberFormat(readPurchaseAmount);
-            int purchaseAmount = parser.parseToInt(readPurchaseAmount);
-            validator.validatePurchaseAmount(purchaseAmount);
-            return purchaseAmount;
+            try {
+                String readPurchaseAmount = inputView.readPurchaseAmount();
+                validator.validateNumberFormat(readPurchaseAmount);
+                int purchaseAmount = parser.parseToInt(readPurchaseAmount);
+                validator.validatePurchaseAmount(purchaseAmount);
+                return purchaseAmount;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
     private List<Integer> readLottoNumber() {
         while (true) {
-            String winningNumbers = inputView.readWinningNumbers();
-            List<String> lottoNumbers = parser.parseLottoNumbers(winningNumbers);
-            validator.validateSize(lottoNumbers);
-            validator.validateDuplicate(lottoNumbers);
-            for (String lottoNumber : lottoNumbers) {
-                validator.validateNumberFormat(lottoNumber);
-                int parsedLottoNumber = parser.parseToInt(lottoNumber);
-                validator.validateNumberRange(parsedLottoNumber);
+            try {
+                String winningNumbers = inputView.readWinningNumbers();
+                List<String> lottoNumbers = parser.parseLottoNumbers(winningNumbers);
+                validator.validateSize(lottoNumbers);
+                validator.validateDuplicate(lottoNumbers);
+                for (String lottoNumber : lottoNumbers) {
+                    validator.validateNumberFormat(lottoNumber);
+                    int parsedLottoNumber = parser.parseToInt(lottoNumber);
+                    validator.validateNumberRange(parsedLottoNumber);
+                }
+                return parser.convertToIntegerList(lottoNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
-            return parser.convertToIntegerList(lottoNumbers);
         }
     }
 
     private int readBonusNumber(List<Integer> lottoNumbers) {
         while (true) {
+            try {
             String readBonusNumber = inputView.readBonusNumber();
             validator.validateNumberFormat(readBonusNumber);
             int parsedBonusNumber = parser.parseToInt(readBonusNumber);
             validator.validateNumberRange(parsedBonusNumber);
             validator.validateBonusNotInLotto(lottoNumbers,parsedBonusNumber);
             return parsedBonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
