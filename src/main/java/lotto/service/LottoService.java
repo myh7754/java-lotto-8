@@ -5,7 +5,9 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoService {
     public int calculateLottoCount(int purchaseAmount) {
@@ -35,5 +37,14 @@ public class LottoService {
         }
 
         return Rank.valueOf((int) matchCount, matchBonus);
+    }
+
+    public Map<Rank,Integer> calculateLottoResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        Map<Rank,Integer> results = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            Rank rank = calculateLottoRank(lotto, winningNumbers, bonusNumber);
+            results.put(rank, results.getOrDefault(rank, 0) + 1);
+        }
+        return results;
     }
 }
