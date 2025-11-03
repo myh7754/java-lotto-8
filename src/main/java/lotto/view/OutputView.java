@@ -20,9 +20,17 @@ public class OutputView {
     public void printResultMessage(Map<Rank,Integer> results) {
         System.out.println("당첨 통계");
         System.out.println("---");
+        Rank[] outputOrder = {
+                Rank.FIFTH,
+                Rank.FOURTH,
+                Rank.THIRD,
+                Rank.SECOND,
+                Rank.FIRST
+        };
 
-        for (Rank rank : results.keySet()) {
-            System.out.println(rank.getMessage()+" - "+results.get(rank)+"개");
+        for (Rank rank : outputOrder) {
+            int count = results.getOrDefault(rank, 0);
+            System.out.println(rank.getMessage() + " - " + count + "개");
         }
     }
 

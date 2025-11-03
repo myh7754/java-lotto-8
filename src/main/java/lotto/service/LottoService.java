@@ -37,7 +37,7 @@ public class LottoService {
     }
 
     public Map<Rank,Integer> calculateLottoResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        Map<Rank,Integer> results = new HashMap<>();
+        Map<Rank,Integer> results = new EnumMap<>(Rank.class);
         for (Lotto lotto : lottos) {
             Rank rank = calculateLottoRank(lotto, winningNumbers, bonusNumber);
             results.put(rank, results.getOrDefault(rank, 0) + 1);
